@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AliceSister", "AliceSister\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "alice", "alice\alice.csproj", "{5D45D769-47D1-4ED7-9C85-3CA19425D63C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alice.Runtime", "Alice.Runtime\Alice.Runtime.csproj", "{0A3DEDB8-4FF2-4441-985A-B46BB9F3854D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5D45D769-47D1-4ED7-9C85-3CA19425D63C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D45D769-47D1-4ED7-9C85-3CA19425D63C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D45D769-47D1-4ED7-9C85-3CA19425D63C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A3DEDB8-4FF2-4441-985A-B46BB9F3854D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A3DEDB8-4FF2-4441-985A-B46BB9F3854D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A3DEDB8-4FF2-4441-985A-B46BB9F3854D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A3DEDB8-4FF2-4441-985A-B46BB9F3854D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
