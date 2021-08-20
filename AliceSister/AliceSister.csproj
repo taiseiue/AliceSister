@@ -63,6 +63,7 @@
     <Compile Include="ParserFunction.cs" />
     <Compile Include="ParsingScript.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SafeReader.cs" />
     <Compile Include="ThrowError.cs" />
     <Compile Include="Translation.cs" />
     <Compile Include="Trie.cs" />

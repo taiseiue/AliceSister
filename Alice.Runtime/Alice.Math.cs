@@ -15,21 +15,13 @@ namespace AliceScript.NameSpaces
             space.Add(new math_piFunc());
             space.Add(new math_absFunc());
             space.Add(new math_acosFunc());
-            space.Add(new math_acoshFunc());
             space.Add(new math_atan2Func());
             space.Add(new math_atanFunc());
-            space.Add(new math_atanhFunc());
-            space.Add(new math_bitdecrementFunc());
-            space.Add(new math_bitincrementFunc());
-            space.Add(new math_cbrtFunc());
             space.Add(new math_ceilingFunc());
-            space.Add(new math_clampFunc());
-            space.Add(new math_copysignFunc());
             space.Add(new math_cosFunc());
             space.Add(new math_coshFunc());
             space.Add(new math_expFunc());
             space.Add(new math_floorFunc());
-            space.Add(new math_fusedmultiplyaddFunc());
             space.Add(new math_sinFunc());
             space.Add(new math_sinhFunc());
             space.Add(new math_sqrtFunc());
@@ -113,20 +105,7 @@ namespace AliceScript.NameSpaces
             e.Return = new Variable(Math.Acos(e.Args[0].AsDouble()));
         }
     }
-    class math_acoshFunc : FunctionBase
-    {
-        public math_acoshFunc()
-        {
-            this.FunctionName = "math_acosh";
-            this.MinimumArgCounts = 1;
-            this.Run += Math_absFunc_Run;
-        }
-
-        private void Math_absFunc_Run(object sender, FunctionBaseEventArgs e)
-        {
-            e.Return = new Variable(Math.Acosh(e.Args[0].AsDouble()));
-        }
-    }
+  
     class math_sinFunc : FunctionBase
     {
         public math_sinFunc()
@@ -183,62 +162,9 @@ namespace AliceScript.NameSpaces
             e.Return = new Variable(Math.Atan2(e.Args[0].AsDouble(),e.Args[1].AsDouble()));
         }
     }
-    class math_atanhFunc : FunctionBase
-    {
-        public math_atanhFunc()
-        {
-            this.FunctionName = "math_atanh";
-            this.MinimumArgCounts = 1;
-            this.Run += Math_absFunc_Run;
-        }
-
-        private void Math_absFunc_Run(object sender, FunctionBaseEventArgs e)
-        {
-            e.Return = new Variable(Math.Atanh(e.Args[0].AsDouble()));
-        }
-    }
-    class math_bitdecrementFunc : FunctionBase
-    {
-        public math_bitdecrementFunc()
-        {
-            this.FunctionName = "math_bitdecrement";
-            this.MinimumArgCounts = 1;
-            this.Run += Math_bitdecrementFunc_Run;
-        }
-
-        private void Math_bitdecrementFunc_Run(object sender, FunctionBaseEventArgs e)
-        {
-            e.Return = new Variable(Math.BitDecrement(e.Args[0].AsDouble()));
-        }
-    }
-    class math_bitincrementFunc : FunctionBase
-    {
-        public math_bitincrementFunc()
-        {
-            this.FunctionName = "math_bitincrement";
-            this.MinimumArgCounts = 1;
-            this.Run += Math_bitdecrementFunc_Run;
-        }
-
-        private void Math_bitdecrementFunc_Run(object sender, FunctionBaseEventArgs e)
-        {
-            e.Return = new Variable(Math.BitIncrement(e.Args[0].AsDouble()));
-        }
-    }
-    class math_cbrtFunc : FunctionBase
-    {
-        public math_cbrtFunc()
-        {
-            this.FunctionName = "math_cbrt";
-            this.MinimumArgCounts = 1;
-            this.Run += Math_cbrtFunc_Run;
-        }
-
-        private void Math_cbrtFunc_Run(object sender, FunctionBaseEventArgs e)
-        {
-            e.Return = new Variable(Math.Cbrt(e.Args[0].AsDouble()));
-        }
-    }
+  
+   
+   
     class math_ceilingFunc : FunctionBase
     {
         public math_ceilingFunc()
@@ -253,35 +179,7 @@ namespace AliceScript.NameSpaces
             e.Return = new Variable(Math.Ceiling(e.Args[0].AsDouble()));
         }
     }
-    class math_clampFunc : FunctionBase
-    {
-        public math_clampFunc()
-        {
-            this.FunctionName = "math_clamp";
-            this.MinimumArgCounts = 3;
-            this.Run += Math_clampFunc_Run;
-        }
-
-        private void Math_clampFunc_Run(object sender, FunctionBaseEventArgs e)
-        {
-            e.Return = new Variable(Math.Clamp(e.Args[0].AsDouble(),e.Args[1].AsDouble(),e.Args[2].AsDouble()));
-        }
-    }
-    class math_copysignFunc : FunctionBase
-    {
-        public math_copysignFunc()
-        {
-            this.FunctionName = "math_copysign";
-            this.MinimumArgCounts = 2;
-            this.Run += Math_copysignFunc_Run;
-        }
-
-        private void Math_copysignFunc_Run(object sender, FunctionBaseEventArgs e)
-        {
-            e.Return = new Variable(Math.CopySign(e.Args[0].AsDouble(),e.Args[1].AsDouble()));
-        }
-    
-    }
+  
     class math_cosFunc : FunctionBase
     {
         public math_cosFunc()
@@ -338,20 +236,7 @@ namespace AliceScript.NameSpaces
             e.Return = new Variable(e.Args[0].AsDouble());
         }
     }
-    class math_fusedmultiplyaddFunc : FunctionBase
-    {
-        public math_fusedmultiplyaddFunc()
-        {
-            this.Name = "math_fusedmultiplyadd";
-            this.MinimumArgCounts = 3;
-            this.Run += Math_fusedmultiplyaddFunc_Run;
-        }
-
-        private void Math_fusedmultiplyaddFunc_Run(object sender, FunctionBaseEventArgs e)
-        {
-            e.Return = new Variable(Math.FusedMultiplyAdd(e.Args[0].AsDouble(),e.Args[1].AsDouble(),e.Args[2].AsDouble()));
-        }
-    }
+   
     class math_sqrtFunc : FunctionBase
     {
         public math_sqrtFunc()

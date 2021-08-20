@@ -43,9 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArgumentsParser.cs" />
+    <Compile Include="PowerEncodeReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadJEnc\CharCode.cs" />
+    <Compile Include="ReadJEnc\FileReader.cs" />
+    <Compile Include="ReadJEnc\FileType.cs" />
+    <Compile Include="ReadJEnc\ReadJEnc.cs" />
     <Compile Include="shell.cs" />
+    <Compile Include="XMLConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

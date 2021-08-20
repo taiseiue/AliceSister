@@ -50,7 +50,7 @@ namespace AliceScript.NameSpaces
         {
             if (e.Args.Count < 2)
             {
-                e.Return = new Variable(File.ReadAllText(e.Args[0].AsString()));
+                e.Return = new Variable(SafeReader.ReadAllText(e.Args[0].AsString()));
             }
             else
             {
@@ -181,14 +181,9 @@ namespace AliceScript.NameSpaces
 
         private void File_copyFunc_Run(object sender, FunctionBaseEventArgs e)
         {
-            if (e.Args.Count < 3)
-            {
+            
                 File.Move(e.Args[0].AsString(), e.Args[1].AsString());
-            }
-            else
-            {
-                File.Move(e.Args[0].AsString(), e.Args[1].AsString(), e.Args[2].AsBool());
-            }
+           
         }
     }
     class file_existsFunc : FunctionBase
@@ -478,7 +473,7 @@ namespace AliceScript.NameSpaces
     {
         public directory_getdirectoriesFunc()
         {
-            this.Name = "directory_getdirectoriesFunc";
+            this.Name = "directory_getdirectories";
             this.MinimumArgCounts = 1;
             this.Run += Directory_getdirectoriesFunc_Run;
         }
@@ -522,7 +517,7 @@ namespace AliceScript.NameSpaces
     {
         public directory_getfilesFunc()
         {
-            this.Name = "directory_getfilesFunc";
+            this.Name = "directory_getfiles";
             this.MinimumArgCounts = 1;
             this.Run += Directory_getdirectoriesFunc_Run;
         }
