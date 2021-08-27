@@ -47,6 +47,7 @@
     <Compile Include="Alice.Net.cs" />
     <Compile Include="Alice.Random.cs" />
     <Compile Include="Alice.Runtime.cs" />
+    <Compile Include="Alice.Threading.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
