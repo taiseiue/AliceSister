@@ -51,6 +51,8 @@
     <Compile Include="Debugger.cs" />
     <Compile Include="Diagnosis.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="Exceptions.Translate.cs" />
     <Compile Include="FunctionBase.cs" />
     <Compile Include="Functions.Flow.cs" />
     <Compile Include="Functions.OS.cs" />

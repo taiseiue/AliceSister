@@ -17,43 +17,50 @@ namespace AliceScript
     interface IStringFunction { }
 
     // Prints passed list of argumentsand
-    class PrintFunction : ParserFunction
+    class PrintFunction : FunctionBase
     {
         public PrintFunction(bool newLine = true)
         {
+            if (newLine)
+            {
+                this.Name = "print";
+            }
+            else
+            {
+                this.Name = "write";
+            }
+            this.MinimumArgCounts = 1;
+            this.Run += PrintFunction_Run;
             m_newLine = newLine;
         }
-        protected override Variable Evaluate(ParsingScript script)
+
+        private void PrintFunction_Run(object sender, FunctionBaseEventArgs e)
         {
-            List<Variable> args = script.GetFunctionArgs();
-            AddOutput(args, script, m_newLine);
-
-            return Variable.EmptyInstance;
+            if (e.Args.Count == 1)
+            {
+                AddOutput(e.Args[0].AsString(), e.Script, m_newLine);
+            }
+            else
+            {
+                string text = e.Args[0].AsString();
+                MatchCollection mc = Regex.Matches(text, @"{[0-9]+}");
+                foreach (Match match in mc)
+                {
+                    int mn = int.Parse(match.Value.TrimStart('{').TrimEnd('}'));
+                    if (e.Args.Count > mn+1)
+                    {
+                        text=text.Replace(match.Value,e.Args[mn+1].AsString());
+                    }
+                }
+                AddOutput(text,e.Script,m_newLine);
+            }
         }
-        protected override async Task<Variable> EvaluateAsync(ParsingScript script)
-        {
-            List<Variable> args = await script.GetFunctionArgsAsync();
-            AddOutput(args, script, m_newLine);
 
-            return Variable.EmptyInstance;
-        }
-
-        public static void AddOutput(List<Variable> args, ParsingScript script = null,
+        public static void AddOutput(string text, ParsingScript script = null,
                                      bool addLine = true, bool addSpace = true, string start = "")
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(start);
-            foreach (var arg in args)
-            {
-                if (arg == null) { continue; }
-                try
-                {
-                    sb.Append(arg.AsString() + (addSpace ? " " : ""));
-                }
-                catch { }
-            }
-
-            string output = sb.ToString() + (addLine ? Environment.NewLine : string.Empty);
+            
+            string output = text + (addLine ? Environment.NewLine : string.Empty);
             output = output.Replace("\\t", "\t").Replace("\\n", "\n");
             Interpreter.Instance.AppendOutput(output);
 
@@ -468,33 +475,7 @@ namespace AliceScript
     }
 
   
-    // Returns an environment variable
-    class GetEnvFunction : ParserFunction, IStringFunction
-    {
-        protected override Variable Evaluate(ParsingScript script)
-        {
-            string varName = Utils.GetToken(script, Constants.END_ARG_ARRAY);
-            string res = Environment.GetEnvironmentVariable(varName);
-
-            return new Variable(res);
-        }
-    }
-
-    // Sets an environment variable
-    class SetEnvFunction : ParserFunction
-    {
-        protected override Variable Evaluate(ParsingScript script)
-        {
-            string varName = Utils.GetToken(script, Constants.NEXT_ARG_ARRAY);
-            Utils.CheckNotEmpty(script, varName, m_name);
-
-            Variable varValue = Utils.GetItem(script);
-            string strValue = varValue.AsString();
-            Environment.SetEnvironmentVariable(varName, strValue);
-
-            return new Variable(varName);
-        }
-    }
+   
 
     
 

@@ -90,6 +90,8 @@ namespace AliceScript
                 return;
             m_bHasBeenInitialized = true; // making sure the init gets call only once
 
+            ExceptionsTransletor.Init();
+
             RegisterFunctions();
             RegisterEnums();
             RegisterActions();
@@ -113,8 +115,9 @@ namespace AliceScript
             FunctionBaseManerger.Add(new BreakStatement());
             FunctionBaseManerger.Add(new GotoGosubFunction(true));
             FunctionBaseManerger.Add(new GotoGosubFunction(false));
+            FunctionBaseManerger.Add(new ContinueStatement());
 
-            ParserFunction.RegisterFunction(Constants.CONTINUE, new ContinueStatement());
+
             ParserFunction.RegisterFunction(Constants.CLASS, new ClassCreator());
             ParserFunction.RegisterFunction(Constants.ENUM, new EnumFunction());
             ParserFunction.RegisterFunction(Constants.INFINITY, new InfinityFunction());
@@ -142,8 +145,11 @@ namespace AliceScript
             FunctionBaseManerger.Add(new functionsFunc());
             FunctionBaseManerger.Add(new namespacesFunc());
             FunctionBaseManerger.Add(new ImportFunc());
+            FunctionBaseManerger.Add(new LibImportFunc());
             FunctionBaseManerger.Add(new DelegateCreator());
             FunctionBaseManerger.Add(new DelegateCreator(),"_");
+            FunctionBaseManerger.Add(new PrintFunction());
+            FunctionBaseManerger.Add(new PrintFunction(false));
 
             ParserFunction.RegisterFunction(Constants.ADD, new AddFunction());
             ParserFunction.RegisterFunction(Constants.ADD_TO_HASH, new AddVariableToHashFunction());
@@ -156,15 +162,13 @@ namespace AliceScript
             ParserFunction.RegisterFunction(Constants.DATE_TIME, new DateTimeFunction(false));
             ParserFunction.RegisterFunction(Constants.DEEP_COPY, new DeepCopyFunction());
             ParserFunction.RegisterFunction(Constants.DEFINE_LOCAL, new DefineLocalFunction());
-            ParserFunction.RegisterFunction(Constants.ENV, new GetEnvFunction());
             ParserFunction.RegisterFunction(Constants.FIND_INDEX, new FindIndexFunction());
             ParserFunction.RegisterFunction(Constants.GET_COLUMN, new GetColumnFunction());
             ParserFunction.RegisterFunction(Constants.GET_KEYS, new GetAllKeysFunction());
             ParserFunction.RegisterFunction(Constants.LOCK, new LockFunction());
             ParserFunction.RegisterFunction(Constants.NAMESPACE, new NamespaceFunction());
             ParserFunction.RegisterFunction(Constants.NAME_EXISTS, new NameExistsFunction());
-            ParserFunction.RegisterFunction(Constants.NOW, new DateTimeFunction());
-            ParserFunction.RegisterFunction(Constants.PRINT, new PrintFunction());
+            ParserFunction.RegisterFunction(Constants.NOW, new DateTimeFunction()); 
             ParserFunction.RegisterFunction(Constants.PSTIME, new ProcessorTimeFunction());
             ParserFunction.RegisterFunction(Constants.REGEX, new RegexFunction());
             ParserFunction.RegisterFunction(Constants.REMOVE, new RemoveFunction());
@@ -172,7 +176,6 @@ namespace AliceScript
             ParserFunction.RegisterFunction(Constants.RESET_VARS, new ResetVariablesFunction());
             ParserFunction.RegisterFunction(Constants.SCHEDULE_RUN, new ScheduleRunFunction(true));
             ParserFunction.RegisterFunction(Constants.SHOW, new ShowFunction());
-            ParserFunction.RegisterFunction(Constants.SETENV, new SetEnvFunction());
             ParserFunction.RegisterFunction(Constants.SIGNAL, new SignalWaitFunction(true));
             ParserFunction.RegisterFunction(Constants.SINGLETON, new SingletonFunction());
             ParserFunction.RegisterFunction(Constants.SIZE, new SizeFunction());
@@ -211,6 +214,7 @@ namespace AliceScript
             ParserFunction.AddAction(Constants.LABEL_OPERATOR, new LabelFunction());
             ParserFunction.AddAction(Constants.POINTER, new PointerFunction());
             ParserFunction.AddAction(Constants.POINTER_REF, new PointerReferenceFunction());
+
 
             Assembly myAssembly = Assembly.GetEntryAssembly();
             if (File.Exists(Alice.Runtime_File_Path))
